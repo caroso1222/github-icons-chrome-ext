@@ -1,0 +1,25 @@
+{
+  "manifest_version": 2,
+
+  "name": "Github Icons Extension",
+  "description":
+    "This extension will replace the default icons of GitHub files for prettier ones",
+  "author": "Carlos Roso",
+  "version": "1.0",
+  "browser_action": {
+    "default_title": "Test"
+  },
+  "permissions": ["activeTab", "tabs"],
+  "background": {
+    "persistent": false,
+    "scripts": ["background.js"]
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://*.github.com/*"],
+      "js": ["content.js"],
+      "run_at": "document_end"
+    }
+  ],
+  "web_accessible_resources": ["script.js", "icons/*.svg"]
+}
