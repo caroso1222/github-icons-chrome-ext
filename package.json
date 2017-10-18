@@ -1,0 +1,22 @@
+{
+  "name": "github-icons-extension",
+  "version": "1.0.0",
+  "description": "Chrome extension to add icons to GitHub files",
+  "main": "index.js",
+  "scripts": {
+    "build": "./node_modules/.bin/webpack",
+    "watch": "./node_modules/.bin/webpack -w"
+  },
+  "author": "",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/caroso1222/github-icons-chrome-ext"
+  },
+  "devDependencies": {
+    "@types/chrome": "~0.0.49",
+    "ts-loader": "~2.3.7",
+    "typescript": "~2.5.3",
+    "webpack": "~3.7.0"
+  }
+}

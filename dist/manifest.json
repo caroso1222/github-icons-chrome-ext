@@ -10,16 +10,15 @@
     "default_title": "Test"
   },
   "permissions": ["activeTab", "tabs"],
-  "background": {
-    "persistent": false,
-    "scripts": ["background.js"]
-  },
   "content_scripts": [
     {
       "matches": ["*://*.github.com/*"],
-      "js": ["content.js"],
+      "js": ["vendor.js", "content.js"],
       "run_at": "document_end"
     }
   ],
-  "web_accessible_resources": ["script.js", "icons/*.svg"]
+  "background": {
+    "scripts": ["vendor.js", "background.js"]
+  },
+  "web_accessible_resources": ["vendor.js", "script.js", "icons/*.svg"]
 }
