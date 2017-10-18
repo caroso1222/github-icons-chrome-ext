@@ -28,18 +28,16 @@ export class GitHubDomManipulator {
    * @param {GitHubEntity[]} entities 
    * @memberof GitHubDomManipulator
    */
-  renderNewIcons(entities: GitHubEntity[]) {
-    entities.forEach(entity => {
-      if (entity.newIconURL) {
-        const img = document.createElement('IMG');
-        img.setAttribute('src', entity.newIconURL);
-        img.style.height = '15px';
-        img.style.position = 'relative';
-        img.style.top = '3px';
-        img.style.left = '-2px';
-        this.replaceIcon(img, entity.iconPlaceholder);
-      }
-    });
+  renderNewIcon(entity: GitHubEntity) {
+    if (entity.newIconURL) {
+      const img = document.createElement('IMG');
+      img.setAttribute('src', entity.newIconURL);
+      img.style.height = '15px';
+      img.style.position = 'relative';
+      img.style.top = '3px';
+      img.style.left = '-2px';
+      this.replaceIcon(img, entity.iconPlaceholder);
+    }
   }
   
   private replaceIcon(newIcon: HTMLElement, parent: HTMLElement) {

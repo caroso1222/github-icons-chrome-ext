@@ -20,8 +20,8 @@ export class GitHubIconReplacer {
       let iconName = this.iconFinder.getIconName(entity);
       if (iconName) {
         entity.newIconURL = this.baseURL + iconName;
+        this.domManipulator.renderNewIcon(entity);
       }
     });
-    this.domManipulator.renderNewIcons(this.entities);
   }
 }
