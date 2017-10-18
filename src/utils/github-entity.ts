@@ -1,5 +1,5 @@
 /**
- * A GitHub entity represents the link which the user links to drilldown to
+ * A GitHub entity represents the link which the user clicks to drilldown to
  * a folder or a file of the repository. It has a name, a type, an HTML element
  * which will work as an anchor to place the new icon, and the URL of the new icon.
  * 
