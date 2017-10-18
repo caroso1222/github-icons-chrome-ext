@@ -17,7 +17,7 @@ export class GitHubIconReplacer {
   init() {
     this.entities = this.domManipulator.getGitHubEntities();
     this.entities.forEach(entity => {
-      let iconName = this.iconFinder.getIconName(entity);
+      const iconName = this.iconFinder.getIconName(entity);
       if (iconName) {
         entity.newIconURL = this.baseURL + iconName;
         this.domManipulator.renderNewIcon(entity);
