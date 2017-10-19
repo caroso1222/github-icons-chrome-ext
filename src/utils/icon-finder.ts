@@ -53,8 +53,6 @@ export class IconFinder {
         ? "folder_type_" + folderNames[entity.fileName] + ".svg"
         : "default_folder.svg";
     } else {
-      console.log(entity.fileName)
-      console.log(fileNames["languages"])
       return fileNames["extensions"][entity.fileName]
         ? "file_type_" + fileNames["extensions"][entity.fileName] + ".svg"
         : (fileNames["filenamesGlob"][entity.fileName]
