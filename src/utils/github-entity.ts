@@ -14,14 +14,20 @@ export class GitHubEntity {
    * @memberof GitHubEntity
    */
   newIconURL: string;
+  newAgeColor: string;
 
   constructor(
     public fileName: string,
     public type: GitHubEntityType,
-    public iconPlaceholder: HTMLElement
+    public iconPlaceholder: HTMLElement,
+    public ageType: GitHubEntityAgeType,
+    public agePlaceholder: HTMLElement
   ) { }
 }
 
 export enum GitHubEntityType {
   File, Folder
+}
+export enum GitHubEntityAgeType {
+  Days, Months, Years
 }

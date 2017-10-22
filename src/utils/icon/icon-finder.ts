@@ -1,4 +1,4 @@
-import { GitHubEntity, GitHubEntityType } from "./github-entity";
+import { GitHubEntity, GitHubEntityType } from "../github-entity";
 import { extensions as files } from "./vscode-icon-manifest/supportedExtensions";
 import { extensions as folders } from "./vscode-icon-manifest/supportedFolders";
 import { languages } from "./vscode-icon-manifest/languages";
