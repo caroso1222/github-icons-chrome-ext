@@ -24,18 +24,20 @@ export class GitHubDomManipulator {
       });
       return entities;
     } catch(e) {
-      console.log('DOM not stable');
+      // If an exception was caught, then it means that the DOM is still unstable
+      // and GitHub might still change the DOM in the next couple milliseconds so we do nothing 
       return [];
     }
   }
   
   getAgeType(text: string):GitHubEntityAgeType{
-    if (text.search('day')!==-1)
-    return GitHubEntityAgeType.Days
-    else if (text.search('month')!==-1)
-    return GitHubEntityAgeType.Months
-    else
-    return GitHubEntityAgeType.Years
+    if (text.search('day') !== -1) {
+      return GitHubEntityAgeType.Days;
+    } else if (text.search('month') !== -1) {
+      return GitHubEntityAgeType.Months;
+    } else {
+      return GitHubEntityAgeType.Years;
+    }
   }
 
   /**
