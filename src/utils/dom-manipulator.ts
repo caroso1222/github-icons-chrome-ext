@@ -9,19 +9,24 @@ export class GitHubDomManipulator {
    * @memberof GitHubDomManipulator
    */
   getGitHubEntities(): GitHubEntity[] {
-    const elems = [].slice.call(document.querySelectorAll('.files tr.js-navigation-item:not(.up-tree)'));
-    const entities = elems.map((elem: HTMLElement) => {
-      const iconPlaceholder = elem.querySelector('.icon') as HTMLElement;
-      const agePlaceholder = elem.querySelector('.age') as HTMLElement;
-      const ageText = agePlaceholder.querySelector('time-ago').innerHTML;
-      const ageType = this.getAgeType(ageText);
-      // detect the type of the entity by checking the classes of the svg icon
-      const svg = iconPlaceholder.querySelector('svg');
-      const type = svg.classList.contains('octicon-file-text') ? GitHubEntityType.File : GitHubEntityType.Folder;
-      const name = elem.querySelector('.content a').textContent;
-      return new GitHubEntity(name, type, iconPlaceholder, ageType, agePlaceholder);
-    });
-    return entities;
+    try {
+      const elems = [].slice.call(document.querySelectorAll('.files tr.js-navigation-item:not(.up-tree)'));
+      const entities = elems.map((elem: HTMLElement) => {
+        const iconPlaceholder = elem.querySelector('.icon') as HTMLElement;
+        const agePlaceholder = elem.querySelector('.age') as HTMLElement;
+        const ageText = agePlaceholder.querySelector('time-ago').innerHTML;
+        const ageType = this.getAgeType(ageText);
+        // detect the type of the entity by checking the classes of the svg icon
+        const svg = iconPlaceholder.querySelector('svg');
+        const type = svg.classList.contains('octicon-file-text') ? GitHubEntityType.File : GitHubEntityType.Folder;
+        const name = elem.querySelector('.content a').textContent;
+        return new GitHubEntity(name, type, iconPlaceholder, ageType, agePlaceholder);
+      });
+      return entities;
+    } catch(e) {
+      console.log('DOM not stable');
+      return [];
+    }
   }
   
   getAgeType(text: string):GitHubEntityAgeType{
@@ -79,7 +84,6 @@ export class GitHubDomManipulator {
   renderNewAgeColor(entity: GitHubEntity) {
     if (entity.newAgeColor) {
       entity.agePlaceholder.style.color = entity.newAgeColor;
-      console.log( entity.agePlaceholder)
     }
   }
 
