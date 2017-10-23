@@ -25,7 +25,11 @@ export class GitHubDomManipulator {
   }
   
   getAgeType(text: string):GitHubEntityAgeType{
-    if (text.search('day')!==-1)
+    if (text.search('second')!==-1)
+    return GitHubEntityAgeType.Seconds
+    else if (text.search('hour')!==-1)
+    return GitHubEntityAgeType.Hours
+    else if (text.search('day')!==-1)
     return GitHubEntityAgeType.Days
     else if (text.search('month')!==-1)
     return GitHubEntityAgeType.Months
@@ -78,8 +82,7 @@ export class GitHubDomManipulator {
    */
   renderNewAgeColor(entity: GitHubEntity) {
     if (entity.newAgeColor) {
-      entity.agePlaceholder.style.color = entity.newAgeColor;
-      console.log( entity.agePlaceholder)
+      entity.agePlaceholder.style.color =  entity.newAgeColor;
     }
   }
 

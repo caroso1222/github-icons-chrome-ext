@@ -29,5 +29,5 @@ export enum GitHubEntityType {
   File, Folder
 }
 export enum GitHubEntityAgeType {
-  Days, Months, Years
+  Seconds, Hours, Days, Months, Years
 }
