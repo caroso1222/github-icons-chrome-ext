@@ -4,7 +4,7 @@
   "name": "Github Icons Extension",
   "description":
     "This extension will replace the default icons of GitHub files for prettier ones",
-  "author": "Carlos Roso",
+  "author": "Carlos Roso, Juan Bernal",
   "version": "1.0",
   "browser_action": {
     "default_title": "Test"
