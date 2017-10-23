@@ -9,32 +9,39 @@ export class GitHubDomManipulator {
    * @memberof GitHubDomManipulator
    */
   getGitHubEntities(): GitHubEntity[] {
-    const elems = [].slice.call(document.querySelectorAll('.files tr.js-navigation-item:not(.up-tree)'));
-    const entities = elems.map((elem: HTMLElement) => {
-      const iconPlaceholder = elem.querySelector('.icon') as HTMLElement;
-      const agePlaceholder = elem.querySelector('.age') as HTMLElement;
-      const ageText = agePlaceholder.querySelector('time-ago').innerHTML;
-      const ageType = this.getAgeType(ageText);
-      // detect the type of the entity by checking the classes of the svg icon
-      const svg = iconPlaceholder.querySelector('svg');
-      const type = svg.classList.contains('octicon-file-text') ? GitHubEntityType.File : GitHubEntityType.Folder;
-      const name = elem.querySelector('.content a').textContent;
-      return new GitHubEntity(name, type, iconPlaceholder, ageType, agePlaceholder);
-    });
-    return entities;
+    try {
+      const elems = [].slice.call(document.querySelectorAll('.files tr.js-navigation-item:not(.up-tree)'));
+      const entities = elems.map((elem: HTMLElement) => {
+        const iconPlaceholder = elem.querySelector('.icon') as HTMLElement;
+        const agePlaceholder = elem.querySelector('.age') as HTMLElement;
+        const ageText = agePlaceholder.querySelector('time-ago').innerHTML;
+        const ageType = this.getAgeType(ageText);
+        // detect the type of the entity by checking the classes of the svg icon
+        const svg = iconPlaceholder.querySelector('svg');
+        const type = svg.classList.contains('octicon-file-text') ? GitHubEntityType.File : GitHubEntityType.Folder;
+        const name = elem.querySelector('.content a').textContent;
+        return new GitHubEntity(name, type, iconPlaceholder, ageType, agePlaceholder);
+      });
+      return entities;
+    } catch(e) {
+      // If an exception was caught, then it means that the DOM is still unstable
+      // and GitHub might still change the DOM in the next couple milliseconds so we do nothing 
+      return [];
+    }
   }
   
   getAgeType(text: string):GitHubEntityAgeType{
-    if (text.search('second')!==-1)
-    return GitHubEntityAgeType.Seconds
-    else if (text.search('hour')!==-1)
-    return GitHubEntityAgeType.Hours
-    else if (text.search('day')!==-1)
-    return GitHubEntityAgeType.Days
-    else if (text.search('month')!==-1)
-    return GitHubEntityAgeType.Months
-    else
-    return GitHubEntityAgeType.Years
+    if (text.search('second') !== -1) {
+      return GitHubEntityAgeType.Seconds;
+    } else if (text.search('hour') !== -1) {
+      return GitHubEntityAgeType.Hours;
+    } else if (text.search('day') !== -1) {
+      return GitHubEntityAgeType.Days;
+    } else if (text.search('month') !== -1) {
+      return GitHubEntityAgeType.Months;
+    } else {
+      return GitHubEntityAgeType.Years;
+    }
   }
 
   /**
@@ -82,7 +89,7 @@ export class GitHubDomManipulator {
    */
   renderNewAgeColor(entity: GitHubEntity) {
     if (entity.newAgeColor) {
-      entity.agePlaceholder.style.color =  entity.newAgeColor;
+      entity.agePlaceholder.style.color = entity.newAgeColor;
     }
   }
 

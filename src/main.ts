@@ -5,14 +5,14 @@ import { GitHubEntity } from './utils/github-entity';
 
 export class GitHubIconReplacer {
   
-  entities: GitHubEntity[];
+  private entities: GitHubEntity[];
 
-  iconFinder = new IconFinder();
-  ageColor = new ageColor();
-  domManipulator = new GitHubDomManipulator();
+  private iconFinder = new IconFinder();
+  private ageColor = new ageColor();
+  private domManipulator = new GitHubDomManipulator();
 
-  constructor(public baseURL: string) {
-    this.init();
+  constructor(private baseURL: string) {
+    //this.init();
   }
 
   init() {
