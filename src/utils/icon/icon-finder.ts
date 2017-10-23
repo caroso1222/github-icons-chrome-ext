@@ -55,7 +55,6 @@ export class IconFinder {
     } else {
       const split = entity.fileName.split('.');
       const splitLength = split.length;
-      console.log(split[splitLength-2] + split[splitLength-1])
       return fileNames["extensions"][entity.fileName]
         ? "file_type_" + fileNames["extensions"][entity.fileName] + ".svg"
         : (fileNames["filenamesGlob"][entity.fileName]
