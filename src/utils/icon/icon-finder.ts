@@ -53,12 +53,17 @@ export class IconFinder {
         ? "folder_type_" + folderNames[entity.fileName] + ".svg"
         : "default_folder.svg";
     } else {
+      const split = entity.fileName.split('.');
+      const splitLength = split.length;
+      console.log(split[splitLength-2] + split[splitLength-1])
       return fileNames["extensions"][entity.fileName]
         ? "file_type_" + fileNames["extensions"][entity.fileName] + ".svg"
         : (fileNames["filenamesGlob"][entity.fileName]
           ? "file_type_" + fileNames["filenamesGlob"][entity.fileName] + ".svg"
-          : (fileNames["languages"][entity.fileName.split('.')[1]]
-          ? "file_type_" + fileNames["languages"][entity.fileName.split('.')[1]] + ".svg"
+          : (fileNames["filenamesGlob"][split[splitLength-2] + "." + split[splitLength-1]])
+          ? "file_type_" + fileNames["filenamesGlob"][split[splitLength-2] + "." + split[splitLength-1]] + ".svg" :
+          (fileNames["languages"][split[splitLength-1]]
+          ? "file_type_" + fileNames["languages"][split[splitLength-1]] + ".svg"
           : "default_file.svg"));
     }
   }
