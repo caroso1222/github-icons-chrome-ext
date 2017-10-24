@@ -11,18 +11,20 @@ export class ageColor {
   getColor(entity: GitHubEntity): string {
     switch (entity.ageType) {
       case GitHubEntityAgeType.Seconds:
-        return "#047331";
+        return "#54d64e";
+      case GitHubEntityAgeType.Minutes:
+        return "#54d64e";
       case GitHubEntityAgeType.Hours:
-        return "#388C04";
+        return "#54d64e";
       case GitHubEntityAgeType.Days:
-        return "#CACE17";
+        return "#40A33B";
       case GitHubEntityAgeType.Months:
-        return "#E16519";
+        return "#6a737d";
       case GitHubEntityAgeType.Years:
-        return "#CA0300";
+        return "#6a737d";
 
       default:
-        return "#CA0300";
+        return "#6a737d";
     }
   }
 }
